@@ -27,7 +27,7 @@
             --whatsapp-green: #25D366;
             --radius-main: 14px;
             --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            --logo-filter: invert(0); /* Mantém original no dark */
+            --hero-img-filter: invert(0); /* Mantém a imagem original no Dark Mode */
         }
 
         /* Configuração do Modo Claro (White) */
@@ -42,8 +42,8 @@
             --accent-color: #111111;
             --accent-inverse: #ffffff;
             --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.04);
-            /* Se seu logo for branco, essa linha faz ele ficar preto no modo claro */
-            --logo-filter: invert(1); 
+            /* Se sua imagem de destaque for branca/escura sem fundo, isso adapta ela no modo claro */
+            --hero-img-filter: invert(1); 
         }
 
         /* ==========================================================================
@@ -95,20 +95,18 @@
             height: 72px;
         }
 
-        /* Ajuste do container do Logo para receber a imagem */
         .nav-logo {
-            display: flex;
-            align-items: center;
-            height: 100%;
+            font-size: 18px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.5px;
             text-decoration: none;
+            color: var(--text-primary);
         }
 
-        .nav-logo img {
-            max-height: 40px; /* Altura ideal e elegante para a barra */
-            width: auto;
-            object-fit: contain;
-            filter: var(--logo-filter);
-            transition: var(--transition-smooth);
+        .nav-logo span {
+            font-weight: 300;
+            color: var(--text-secondary);
         }
 
         .nav-menu {
@@ -149,7 +147,7 @@
         }
 
         /* ==========================================================================
-           LETREIRO INFINITO SUAVE E CADENCIADO (PROFISSIONAL)
+           LETREIRO INFINITO SUAVE E CADENCIADO
            ========================================================================== */
         .marquee-wrapper {
             width: 100%;
@@ -192,11 +190,25 @@
         }
 
         /* ==========================================================================
-           SEÇÃO HERO (BOAS-VINDAS)
+           SEÇÃO HERO (BOAS-VINDAS) COM IMAGEM DE DESTAQUE
            ========================================================================== */
         .hero {
             padding: 60px 0 30px 0;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Estilização da foto de destaque */
+        .hero-featured-img {
+            max-width: 100%;
+            width: 480px; /* Tamanho premium de destaque */
+            height: auto;
+            object-fit: contain;
+            margin-bottom: 24px;
+            filter: var(--hero-img-filter);
+            transition: var(--transition-smooth);
         }
 
         .hero h1 {
@@ -346,7 +358,7 @@
             flex-grow: 1;
         }
 
-        /* Botões de Ação Dinâmicos */
+        /* Botões de Ação */
         .event-actions-wrapper {
             display: flex;
             flex-direction: column;
@@ -371,7 +383,6 @@
 
         .btn-action-card:hover {
             opacity: 0.9;
-            transform: scale(1.01);
         }
 
         .btn-action-gallery {
@@ -394,7 +405,6 @@
         .btn-action-gallery:hover {
             border-color: var(--text-primary);
             background: rgba(255, 255, 255, 0.03);
-            transform: scale(1.01);
         }
 
         [data-theme="light"] .btn-action-gallery:hover {
@@ -477,7 +487,11 @@
             }
             .hero {
                 padding: 40px 0 20px 0;
-                text-align: left; 
+                text-align: center; 
+            }
+            .hero-featured-img {
+                width: 80%; /* Reduz proporcionalmente no mobile */
+                margin-bottom: 16px;
             }
             .events-grid {
                 grid-template-columns: 1fr; 
@@ -502,10 +516,7 @@
     <!-- BARRA DE NAVEGAÇÃO -->
     <nav class="navbar">
         <div class="container nav-container">
-            <!-- Imagem do logo adicionada aqui -->
-            <a href="index.html" class="nav-logo">
-                <img src="fotoscuderia.png" alt="fotosscuderia">
-            </a>
+            <a href="index.html" class="nav-logo">fotos<span>scuderia</span></a>
             
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
@@ -536,8 +547,11 @@
         </div>
     </div>
 
-    <!-- INTRODUÇÃO / CHAMADA PRINCIPAL -->
+    <!-- INTRODUÇÃO / SEÇÃO HERO COM FOTO EM DESTAQUE -->
     <header class="hero container">
+        <!-- Sua imagem adicionada aqui como Destaque Principal -->
+        <img src="fotoscuderia.png" alt="Scuderia Destaque" class="hero-featured-img">
+        
         <h1>Gere seu Card Oficial</h1>
         <p>Selecione abaixo o evento que você participou para conferir a galeria completa de fotos ou criar sua moldura personalizada de atleta.</p>
     </header>
