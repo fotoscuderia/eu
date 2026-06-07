@@ -27,6 +27,7 @@
             --whatsapp-green: #25D366;
             --radius-main: 14px;
             --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --logo-filter: invert(0); /* Mantém original no dark */
         }
 
         /* Configuração do Modo Claro (White) */
@@ -41,6 +42,8 @@
             --accent-color: #111111;
             --accent-inverse: #ffffff;
             --shadow-premium: 0 12px 30px rgba(0, 0, 0, 0.04);
+            /* Se seu logo for branco, essa linha faz ele ficar preto no modo claro */
+            --logo-filter: invert(1); 
         }
 
         /* ==========================================================================
@@ -92,18 +95,20 @@
             height: 72px;
         }
 
+        /* Ajuste do container do Logo para receber a imagem */
         .nav-logo {
-            font-size: 18px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            height: 100%;
             text-decoration: none;
-            color: var(--text-primary);
         }
 
-        .nav-logo span {
-            font-weight: 300;
-            color: var(--text-secondary);
+        .nav-logo img {
+            max-height: 40px; /* Altura ideal e elegante para a barra */
+            width: auto;
+            object-fit: contain;
+            filter: var(--logo-filter);
+            transition: var(--transition-smooth);
         }
 
         .nav-menu {
@@ -160,7 +165,6 @@
             display: flex;
             white-space: nowrap;
             gap: 60px;
-            /* Ritmo desacelerado para 45s garante sofisticação visual */
             animation: scroll-marquee 45s linear infinite;
         }
 
@@ -196,7 +200,6 @@
         }
 
         .hero h1 {
-            /* Responsividade fluida para o título principal */
             font-size: clamp(32px, 5vw, 44px);
             font-weight: 900;
             letter-spacing: -1.5px;
@@ -248,7 +251,6 @@
             border: 1px solid var(--border-color);
         }
 
-        /* Grid adaptável inteligente */
         .events-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -278,7 +280,6 @@
             box-shadow: 0 20px 35px rgba(0, 0, 0, 0.06);
         }
 
-        /* Área de imagem */
         .event-cover {
             width: 100%;
             aspect-ratio: 16/10;
@@ -320,7 +321,6 @@
             text-shadow: 0 3px 10px rgba(0,0,0,0.6);
         }
 
-        /* Informações internas */
         .event-body {
             padding: 20px;
             display: flex;
@@ -343,7 +343,7 @@
             line-height: 1.4;
             color: var(--text-primary);
             margin-bottom: 16px;
-            flex-grow: 1; /* Garante alinhamento parelho dos botões */
+            flex-grow: 1;
         }
 
         /* Botões de Ação Dinâmicos */
@@ -366,11 +366,12 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            transition: opacity 0.2s ease;
+            transition: var(--transition-smooth);
         }
 
         .btn-action-card:hover {
             opacity: 0.9;
+            transform: scale(1.01);
         }
 
         .btn-action-gallery {
@@ -393,6 +394,7 @@
         .btn-action-gallery:hover {
             border-color: var(--text-primary);
             background: rgba(255, 255, 255, 0.03);
+            transform: scale(1.01);
         }
 
         [data-theme="light"] .btn-action-gallery:hover {
@@ -471,14 +473,14 @@
                 padding: 0 16px;
             }
             .nav-menu {
-                display: none; /* Oculta links secundários no mobile para limpar a barra */
+                display: none; 
             }
             .hero {
                 padding: 40px 0 20px 0;
-                text-align: left; /* Alinhamento elegante à esquerda no mobile */
+                text-align: left; 
             }
             .events-grid {
-                grid-template-columns: 1fr; /* Força uma coluna única perfeita em telas de celulares */
+                grid-template-columns: 1fr; 
                 gap: 20px;
             }
             .footer-container {
@@ -500,7 +502,10 @@
     <!-- BARRA DE NAVEGAÇÃO -->
     <nav class="navbar">
         <div class="container nav-container">
-            <a href="index.html" class="nav-logo">fotos<span>scuderia</span></a>
+            <!-- Imagem do logo adicionada aqui -->
+            <a href="index.html" class="nav-logo">
+                <img src="fotoscuderia.png" alt="fotosscuderia">
+            </a>
             
             <ul class="nav-menu">
                 <li><a href="index.html" class="nav-link active">Home</a></li>
@@ -513,7 +518,7 @@
         </div>
     </nav>
 
-    <!-- LETREIRO INFINITO (Duplicado estaticamente para garantir o looping sem saltos na tela inteira) -->
+    <!-- LETREIRO INFINITO -->
     <div class="marquee-wrapper">
         <div class="marquee-content">
             <span class="marquee-item">croatarun</span>
@@ -522,7 +527,6 @@
             <span class="marquee-item">croatarun</span>
             <span class="marquee-item">fotosscuderia</span>
             <span class="marquee-item">croataride</span>
-            <!-- Bloco duplicado para preencher o buffer de tela cheia -->
             <span class="marquee-item">croatarun</span>
             <span class="marquee-item">fotosscuderia</span>
             <span class="marquee-item">croataride</span>
